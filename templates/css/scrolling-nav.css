@@ -1,0 +1,59 @@
+/*!
+ * Start Bootstrap - Scrolling Nav (https://startbootstrap.com/templates/scrolling-nav)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-scrolling-nav/blob/master/LICENSE)
+ */
+header {
+  padding: 156px 0 50px;
+}
+
+section {
+  padding: 50px 0;
+}
+
+.logo-font {
+  color: white;
+  font-size: 44px;
+  font-family: "Righteous", cursive;
+  font-style: italic;
+  text-align: center;
+}
+
+img {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+  }
+
+.menu-font {
+  color: white;
+  font-size: 14px;
+  font-family: "Righteous", cursive;
+  font-style: italic;
+  text-align: center;
+}
+
+h4, h2, h1, ul, p{
+  font-family: "Righteous", cursive;
+  font-style: italic;
+  text-align: center;
+}
+
+.form-group {
+  font-family: "Righteous";
+  font-style: italic;
+}
+
+.result {
+  color: white;
+  font-size: 44px;
+  font-family: "Righteous", cursive;
+  font-style: italic;
+  text-align: center;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
