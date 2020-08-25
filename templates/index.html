@@ -34,7 +34,7 @@
         alt="logo" 
         width="8%"/> FAsT Loans       
         <!-- <img 
-        src="money.png" 
+        src=""../static/money.png" 
         alt="logo" 
         width="8%"
       /> -->
@@ -82,44 +82,44 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="Purpose">Loan purpose</label>
-                  <select name="Purpose" id="Purpose" class="form-control">
-                    <option selected>Why you want money?</option>
-                    <option>Home</option>
-                    <option>Business</option>
-                    <option>Investment</option>
-                    <option>Other</option>
-                  </select>
-                </div>           
+                  <select name="Purpose" id="Purpose" class="form-control" required>
+                    <option value ="">Why you want money?</option>
+                    <option value ="0"> Home</option>
+                    <option value ="1">Business</option>
+                    <option value ="2">Investment</option>
+                    <option value ="3">Emergency Funds</option>
+                    <option value ="4">Other</option>
+                  </select>                  
+                </div>                      
                 <div class="form-group col-md-4">
                   <label for="Age">Age</label>
-                  <input type="text" class="form-control" name="Age" id="Age" placeholder="As a fraction">
+                  <input type="number" min="20" class="form-control" name="Age" id="Age" placeholder="A man never asks, a woman never tells" required>
                 </div>
-
                 <div class="form-group col-md-4">
                   <label for="Dependents">Number of dependents</label>
-                  <input type="text" class="form-control" name="Dependents" id="Dependents" placeholder="7? Seriously!">
+                  <input type="number" min="0" max="15" class="form-control" name="Dependents" id="Dependents" placeholder="7? Seriously!" required>
                 </div>             
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="Employment">Are you employed?</label>
-                <select name="Employment" id="Employment" class="form-control">
-                  <option selected>How will you pay us back if you aren't?</option>
-                  <option>Yes</option>
-                  <option>No</option>
+                <select name="Employment" id="Employment" class="form-control" required>
+                  <option value ="">How will you pay us back if you aren't?</option>
+                  <option value ="1">Yes</option>
+                  <option value ="0">No</option>
                 </select>
               </div>
               <div class="form-group col-md-4">
                 <label for="Salary">Yearly salary</label>
-                <input type="text" class="form-control" name="Salary" id="Salary" placeholder="No crying">
+                <input type="number" class="form-control" name="Salary" id="Salary" placeholder="No crying" required> 
               </div>
               <div class="form-group col-md-4">
                 <label for="first_loan">Is this your first loan?</label>
-                <select name="first_loan" id="first_loan" class="form-control">
-                  <option selected>Everyone has a first...</option>
-                  <option>Yes</option>
-                  <option>No</option>
+                <select name="first_loan" id="first_loan" class="form-control" required>
+                  <option value ="">Everyone has a first...</option>
+                  <option value ="1">Yes</option>
+                  <option value ="0">No</option>
                 </select>
               </div>          
             </div>
@@ -127,40 +127,40 @@
             <div class="form-row">              
               <div class="form-group col-md-6">
                 <label for="Repay">Have you fully repaid a previous loan?</label>
-                <select name="Repay" id="Repay" class="form-control">
-                  <option selected>Big if true...</option>
-                  <option>Yes</option>
-                  <option>No</option>
-                  <option>Not Applicable (1st loan)</option>
+                <select name="Repay" id="Repay" class="form-control" required>
+                  <option value ="">Big if true...</option>
+                  <option value ="1">Yes</option>
+                  <option value ="0">No</option>
+                  <option value ="2">Not Applicable (1st loan)</option>
                 </select>
               </div>
               <div class="form-group col-md-6">
                 <label for="Current">Are you currently repaying a loan?</label>
-                <select name="Current" id="Current" class="form-control">
-                  <option selected>I hope you pay on time...</option>
-                  <option>Yes</option>
-                  <option>No</option>
-                  <option>Not Applicable (1st loan)</option>
+                <select name="Current" id="Current" class="form-control" required>
+                  <option value ="">I hope you pay on time...</option>
+                  <option value ="1">Yes</option>
+                  <option value ="0">No</option>
+                  <option value ="2">Not Applicable (1st loan)</option>
                 </select>
               </div>
               <div class="form-group col-md-6">
                 <label for="Savings">Dollar amount in savings account</label>
-                <input type="text" class="form-control" name="Savings" id="Savings" placeholder="Come on, honestly">
+                <input type="number" min="0" class="form-control" name="Savings" id="Savings" placeholder="Come on, honestly" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="Checking">Dollar amount in checking account</label>
-                <input type="text" class="form-control" name="Checking" id="Checking" placeholder="Dude?">
+                <input type="number" min="0" class="form-control" name="Checking" id="Checking" placeholder="Dude?" required>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="Credit_card">Total credit card limit</label>
-                <input type="text" class="form-control" name="Credit_card" id="Credit_card" placeholder="How much can you spend on Amazon?">
+                <input type="number" min="0" class="form-control" name="Credit_card" id="Credit_card" placeholder="How much can you spend on Amazon?" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="credit_percent">Avg. percentage of credit limit used last year</label>
-                <input type="text" class="form-control" name="credit_percent" id="credit_percent" placeholder="having it don't mean you should use it">
+                <input type="number" min="0" max="100" class="form-control" name="credit_percent" id="credit_percent" placeholder="having it don't mean you should use it" required>
               </div>
             </div>
 

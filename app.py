@@ -12,73 +12,32 @@ def home():
     
     return render_template("index.html")
 
+# route to make prediction off of model
 @app.route("/predict", methods=["POST"])
-def results(): 
-    # Collecting Purpose Value and Converting 
-    print(request.form)
-    purpose=request.form.get("Purpose")
-    if purpose == "Home":
-        purpose=0
-    elif purpose == "Business":
-        purpose=1 
-    elif purpose == "Investment":
-        purpose=2
-    elif purpose == "Emergency Funds":
-        purpose=3
-    else:
-        purpose=4
-    # Age
-    Age=request.form.get("Age")
-    Age=int(Age)
-    # Dependents
-    Dependents=request.form.get("Dependents")
-    Dependents=int(Dependents)
-    #Employment
-    Employment=request.form.get("Employment")
-    if Employment == "Yes":
-        Employment=1
-    else:
-        Employment=0
-    #Salary
-    Salary=request.form.get("Salary")
-    Salary=int(Salary)
-    # Is this your first loan
-    first_loan=request.form.get("first_loan")
-    if first_loan == "Yes":
-        first_loan=1
-    else:
-        first_loan=0
-    #have you repayed a loan
-    Repay=request.form.get("Repay")
-    if Repay == "Yes":
-        Repay=1
-    elif purpose == "No":
-        Repay=0
-    else:
-        Repay=2
-    #are you currently repaying a loan
-    Current=request.form.get("Current")
-    if Current == "Yes":
-        Current=1
-    elif Current == "No":
-        Current=0
-    else:
-        Current=2
-    #Savings
-    Savings=request.form.get("Savings")
-    Savings=int(Savings)
-    #Checking
-    Checking=request.form.get("Checking")
-    Checking=int(Checking)
-    #Credit_card
-    Credit_card=request.form.get("Credit_card")
-    Credit_card=int(Credit_card)
-    #Credit_percent
-    credit_percent=request.form.get("credit_percent")
-    credit_percent=(int(credit_percent)/100)
+def results():      
+    # print(request.form) #print the value of each of the forms on the webpage    
     
+    purpose=request.form.get("Purpose") # Purpose of loan    
+    Age=request.form.get("Age") # Age of applicant    
+    Dependents=request.form.get("Dependents")# number of dependents    
+    Employment=request.form.get("Employment")# are they employed    
+    Salary=request.form.get("Salary")# Yearly salary    
+    first_loan=request.form.get("first_loan")# Is this their first loan    
+    Repay=request.form.get("Repay")# Have they repayed a loan    
+    Current=request.form.get("Current")# are they currently repaying a loan    
+    Savings=request.form.get("Savings")# Total amount in savings account    
+    Checking=request.form.get("Checking")# Total amount in checking account    
+    Credit_card=request.form.get("Credit_card")# Total credit card limit    
+    credit_percent=request.form.get("credit_percent")# Avg. percent of credit used last year...
+    credit_percent=(int(credit_percent)/100) # Converted to decimal
+    
+    # line up values to match model values and predict
     APorDe = model.predict([[purpose,first_loan,Repay,Current,Credit_card,credit_percent,Savings,Checking,Employment,Salary,Age,Dependents]])
     
+    #used to check (with print above) that values are received correctly 
+    # print(purpose,Age,Dependents,Employment,Salary,first_loan,Repay,Current,Savings,Checking,Credit_card,credit_percent)
+    
+    # report result back to webpage
     if APorDe == 0:
         result = "Denied!"
     else:
@@ -86,7 +45,4 @@ def results():
     return render_template("index.html", result=result)
 
 if __name__ == "__main__":
-    # 
-    app.run(debug=True)
-
- 
+    app.run(debug=True) 
