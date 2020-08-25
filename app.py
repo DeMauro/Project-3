@@ -5,7 +5,7 @@ import pandas as pd
 # create instance of Flask app
 app = Flask(__name__)
 model = joblib.load("Resources/test.joblib")
-print(model)
+
 # create route that renders index.html template
 @app.route("/", methods=["GET"])
 def home():
@@ -78,7 +78,7 @@ def results():
     credit_percent=(int(credit_percent)/100)
     
     APorDe = model.predict([[purpose,first_loan,Repay,Current,Credit_card,credit_percent,Savings,Checking,Employment,Salary,Age,Dependents]])
-    print(APorDe)
+    
     if APorDe == 0:
         result = "Denied!"
     else:
