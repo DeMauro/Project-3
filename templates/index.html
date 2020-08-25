@@ -11,10 +11,10 @@
   <title>Machine Learing</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <link href="../static/css/scrolling-nav.css" rel="stylesheet">
 
   <!-- Google Font -->
   <link
@@ -66,7 +66,7 @@
       <!-- Later Javascript will add flasing Approved or Denied to class "result" when button is pushed -->
       <!-- <div class="result">Approved!</div> -->
       <!-- <div class="result">Denied!</div> -->
-    </div> 
+    </div>
   </header>
 
   <section id="about">
@@ -79,12 +79,12 @@
             there's no worries at FAsT Loans.  <br>Except for paying us back - 
             your kneecaps will thank you.</p>
         </br>
-          <form>
+          <form action="/" method="post">
             
             <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="Purpose">Loan purpose</label>
-                  <select id="Purpose" class="form-control">
+                  <select name="Purpose" id="Purpose" class="form-control">
                     <option selected>Why you want money?</option>
                     <option>Home</option>
                     <option>Business</option>
@@ -100,7 +100,7 @@
                 <div class="form-group col-md-4">
                   <label for="Dependents">Number of dependents</label>
                   <input type="text" class="form-control" id="Dependents" placeholder="7? Seriously!">
-                </div>               
+                </div>             
             </div>
 
             <div class="form-row">
@@ -168,7 +168,7 @@
 
             <div class="form-row">
               <div class="form-group col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" method="post" class="btn btn-primary">Submit</button>
               </div>
             </div>           
           </form>
@@ -178,7 +178,7 @@
   </section>
 
   <section id="services" class="bg-light">
-    <div class="container col-lg-8 mx-auto"">
+    <div class="container col-lg-8 mx-auto">
       <div class="row">
         <div class="col-lg-6 text-center">
           <h2>The FAsT team:</h2>
@@ -215,14 +215,14 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/css/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../static/css/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom JavaScript for this theme -->
-  <script src="js/scrolling-nav.js"></script>
+  <script src="../static/js/scrolling-nav.js"></script>
 
 </body>
 
