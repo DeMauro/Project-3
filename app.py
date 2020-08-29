@@ -16,7 +16,7 @@ import psycopg2
 #################################################
 
 #make sure you have your own config on your computer in the SQL folder
-from config import key
+# from config import key
 
 pg_user = 'postgres'
 pg_pwd = 'iheartdata'
