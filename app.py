@@ -239,6 +239,37 @@ def data():
     #Return the JSON representation of your dictionary
     return (jsonify(my_data))
 
+@app.route("/api/user_data/<user_id>")
+def get_userdate(user_id):
+    
+    user_id = user_id
+    session = Session(engine)
+    
+    #(purpose, first_loan, otherloans_repaid, repaying, credit_limit, limit_used, savings, checking, employeed, salary, age, dependents, granted)
+    user_info = session.query(Loanaccept.id, Loanaccept.purpose, Loanaccept.first_loan, Loanaccept.otherloans_repaid, Loanaccept.repaying, Loanaccept.credit_limit, Loanaccept.limit_used, Loanaccept.savings, Loanaccept.checking, Loanaccept.employeed, Loanaccept.salary, Loanaccept.age, Loanaccept.dependents, Loanaccept.granted).\
+        filter(Loanaccept.id == user_id).all()
+    
+    user_info = {'id': user_info[0][0],
+             'purpose': user_info[0][1],
+             'first_loan': user_info[0][2],
+             'otherloans_repaid': user_info[0][3],
+             'reparying': user_info[0][4],
+             'credit_limit': user_info[0][5],
+             'limit_used': user_info[0][6],
+             'savings': user_info[0][7],
+             'checking': user_info[0][8],
+             'employeed':user_info[0][9],
+             'salary': user_info[0][10],
+             'age': user_info[0][11],
+             'dependents': user_info[0][12],
+             'granted': user_info[0][13]
+            }
+    
+    session.close()
+    
+    return (jsonify(user_info))
+
+
 
 if __name__ == "__main__":
 

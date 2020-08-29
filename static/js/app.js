@@ -57,11 +57,14 @@ var scatter_svg = d3.select("#scatter1-div")
 
 
 //this will create and update the bar graph
-function updatebar(data, user_id){
+function updatebar(data, user_data){
+
     //the data coming in is an array of dictionaries from bar_purpose
 
     //remove the previous contents of the svg each time this is run
     bar_svg.selectAll("*").remove();
+
+    console.log('user data', user_data)
 
     //look at data coming in
     console.log('bardata', data)
@@ -481,6 +484,12 @@ function updatescatter(data, user_id){
 
 }
 
+function getUserdata(){
+    var user_id = userid_cookie()
+
+    return d3.json(`/api/user_data/${user_id}`)
+    
+}
 
 
 //PUT ALL GRAPHS TOGETHER AND MAKE API CALL
@@ -490,15 +499,19 @@ function getData(){
 
         //create the datasets that will be used for different charts
 
-        console.log('json', json)
+        
         df_purpose = json.bar_purpose
         df_firstloan = json.bar_firstloan
         df_salary = json.bar_salary
         df_scatter = json.scatter_credit
 
+        getUserdata().then(my_userdata => {
+            
+            updatebar(df_purpose, my_userdata)
+            updatescatter(df_scatter)
 
-        updatebar(df_purpose)
-        updatescatter(df_scatter)
+
+        })
 
 
     })// end d3 call
