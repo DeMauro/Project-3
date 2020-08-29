@@ -28,7 +28,8 @@ function barcolor(variable){
 
 //set initial parameters (This will be size of entire svg)
 var svgWidth = 900;
-var svgHeight = 800;
+var svgHeight = 500;
+
 
 var margin = {
   top: 40,
@@ -41,15 +42,16 @@ var margin = {
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
+
 var bar_svg = d3.select("#bar1-div")
     .append("svg")
-    .attr("viewBox", "0 0 900 800")
+    .attr("viewBox", "0 0 900 500")
     .classed("svg-content-responsive", true)
     .attr("id","chart-svg")
 
 var scatter_svg = d3.select("#scatter1-div")
     .append("svg")
-    .attr("viewBox", "0 0 900 800")
+    .attr("viewBox", "0 0 900 500")
     .classed("svg-content-responsive", true)
     .attr("id","chart-svg")
 
@@ -181,6 +183,50 @@ function updatebar(data, user_id){
 
     legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
     
+
+}
+
+//function for simple barchart
+
+function updatesimplebar(data){
+
+    bar_svg.selectAll("*").remove();
+
+    var barGroup = bar_svg.append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    // Configure a band scale for the horizontal axis with a padding of 0.1 (10%)
+    var xBandScale = d3.scaleBand()
+        .domain(data.map(d => d.group))
+        .range([0, width])
+        .padding(0.1);
+
+    // Create a linear scale for the vertical axis.
+    var yLinearScale = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.value)])
+        .range([height, 0]);
+
+    // Create two new functions passing our scales in as arguments
+    // These will be used to create the chart's axes
+    var bottomAxis = d3.axisBottom(xBandScale);
+    var leftAxis = d3.axisLeft(yLinearScale);
+
+    barGroup.append("g")
+        .call(leftAxis);
+
+    barGroup.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(bottomAxis);
+
+    barGroup.selectAll(".bar")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("class", "bar")
+        .attr("x", d => xBandScale(d.group))
+        .attr("y", d => yLinearScale(d.value))
+        .attr("width", xBandScale.bandwidth())
+        .attr("height", d => height - yLinearScale(d.value));
 
 }
 
@@ -447,11 +493,13 @@ function getData(){
         console.log('json', json)
         df_purpose = json.bar_purpose
         df_firstloan = json.bar_firstloan
+        df_salary = json.bar_salary
         df_scatter = json.scatter_credit
 
 
         updatebar(df_purpose)
         updatescatter(df_scatter)
+
 
     })// end d3 call
 

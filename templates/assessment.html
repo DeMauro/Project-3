@@ -79,13 +79,14 @@
 
       <div id= "chart-container" class="container-fluid">
           <div class="row chart-row">
-          <div id="bar1-div" class="justify-center chart-div col my-5 pl-5">
+          <div id="bar1-div" class="justify-center chart-div col-12 my-5 pl-5">
               <!-- Add 2 buttons -->
-              <button button type="submit" class="btn btn-primary btn-sm" style="font-size: 1.2vw;" onclick="updatebar(df_purpose)">Loan Purpose</button>
-              <button button type="submit" class="btn btn-primary btn-sm" style="font-size: 1.2vw;" onclick="updatebar(df_firstloan)">First Loan</button>
+              <button button type="submit" class="btn btn-primary btn-sm" onclick="updatebar(df_purpose)">Loan Purpose</button>
+              <button button type="submit" class="btn btn-primary btn-sm" onclick="updatebar(df_firstloan)">First Loan</button>
+              <button button type="submit" class="btn btn-primary btn-sm" onclick="updatesimplebar(df_salary)">Salary</button>
               <!-- bar1 here -->
           </div>
-          <div id="scatter1-div" class="justify-center chart-div col pt-4 my-5 pr-5">
+          <div id="scatter1-div" class="justify-center chart-div col-12 pt-1 my-5 pl-5">
               <!-- scatter1 here -->
           </div>
           </div>

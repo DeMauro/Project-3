@@ -98,6 +98,7 @@ active {
 
 
 #chart-container{
+  font-family: "Righteous";
   text-align: center;
   width: 100%;
   background-image: url("https://images.unsplash.com/photo-1568581357391-c71a1675ef93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60");
@@ -107,13 +108,19 @@ active {
 }
 
 #chart-svg{
+  font-family: "Righteous";
   display: block;
-    position: relative;
-    right: 5;
-    border:solid;
-    border-color: black;
-    border-width: 5px;
-    border-radius: 5px;
-    background-color:whitesmoke;
+  position: relative;
+  right: 5;
+  border:solid;
+  border-color: black;
+  border-width: 5px;
+  border-radius: 5px;
+  background-color:whitesmoke;
 
+}
+
+.btn-primary {
+  font-family: "Righteous";
+  text-align: center;
 }

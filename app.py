@@ -122,6 +122,17 @@ def data():
             
         return mylist
     
+    # function for simple bar chart
+    def simplebar_dic(query):
+        decline = query[0]
+        accept = query[1]
+        accept_dic = {'group':accept[0], 'value':int(accept[1])}
+        decline_dic = {'group':decline[0], 'value':int(decline[1])}
+    
+        simplebar_list = [accept_dic, decline_dic]
+    
+        return simplebar_list
+    
     def dictionary_scatter_list(query):
         mylist = []
     
@@ -189,8 +200,8 @@ def data():
     
     df_firsloan_D = dictionary_bar_list(firstloanData_decline)
     
-    Not_FirstLoan = groupbar(df_purpose_D,df_purpose_A,0)
-    FirstLoan = groupbar(df_purpose_D,df_purpose_A,1)
+    Not_FirstLoan = groupbar(df_firsloan_D,df_firsloan_A,0)
+    FirstLoan = groupbar(df_firsloan_D,df_firsloan_A,1)
     
     #Create list to loop over
     data_names = ['Not_FirstLoan','FirstLoan']
@@ -199,6 +210,15 @@ def data():
     bar_firstloan = []
     for i in range(len(data_names)):
         combine_list(bar_firstloan, data_names, data_lists,i)
+    
+    ### CREATE SALARY DICTIONARY LIST###
+    
+    salary_bar_query= session.query(Loanaccept.granted, func.avg(Loanaccept.salary)).\
+            group_by(Loanaccept.granted).all()
+    
+    salary_bar = simplebar_dic(salary_bar_query)
+    
+    
     
     ### CREATE CREDIT DICTIONARY LIST ######
     
@@ -212,7 +232,7 @@ def data():
     credit_sample = sample(credit_list, 300)
     
     ### COMBINE DICTIONARY LISTS INTO MASTER DICTIONARY ######
-    my_data = {'bar_purpose':bar_purpose, 'bar_firstloan':bar_firstloan, 'scatter_credit': credit_sample}
+    my_data = {'bar_purpose':bar_purpose, 'bar_firstloan':bar_firstloan, 'scatter_credit': credit_sample, 'bar_salary':salary_bar}
         
     session.close()
     
