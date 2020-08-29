@@ -44,7 +44,7 @@ h4, h2, h1, ul, p{
 }
 
 .result {
-  color: white;
+  /* padding: 50px 0; */
   font-size: 44px;
   font-family: "Righteous", cursive;
   font-style: italic;
@@ -52,8 +52,68 @@ h4, h2, h1, ul, p{
   animation: blinker 1s linear infinite;
 }
 
+
+
 @keyframes blinker {
   50% {
     opacity: 0;
   }
+}
+
+/* Additions for body */
+
+active {
+  font-weight: bold;
+  fill: #000;
+}
+
+.inactive {
+  font-weight: lighter;
+  fill: #c9c9c9;
+}
+
+.inactive:hover {
+  fill: #000;
+  cursor: pointer;
+}
+
+/* stype toolTip for scatter */
+.toolTip {
+  background-color: gray;
+  border: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 5px;
+
+}
+
+.chart-row{
+  width: 100%;
+  text-align: center;
+}
+
+.scatter-container{
+  display:inline-block;
+}
+
+
+#chart-container{
+  text-align: center;
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1568581357391-c71a1675ef93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#chart-svg{
+  display: block;
+    position: relative;
+    right: 5;
+    border:solid;
+    border-color: black;
+    border-width: 5px;
+    border-radius: 5px;
+    background-color:whitesmoke;
+
 }

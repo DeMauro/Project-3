@@ -1,0 +1,5 @@
+SELECT * from loanapp
+SELECT * from loanaccept
+
+ALTER TABLE loanapp ADD COLUMN ID SERIAL PRIMARY KEY;
+ALTER TABLE loanaccept ADD COLUMN ID SERIAL PRIMARY KEY;

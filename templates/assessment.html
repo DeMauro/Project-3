@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Machine Learing</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../static/css/scrolling-nav.css" rel="stylesheet">
+
+
+  <!-- Google Font -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Righteous&display=swap"
+  rel="stylesheet"
+/>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger logo-font" href="#page-top"><img 
+        src="../static/money.png" 
+        alt="logo" 
+        width="8%"/> FAsT Loans       
+        <!-- <img 
+        src=""../static/money.png" 
+        alt="logo" 
+        width="8%"
+      /> -->
+      </a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger menu-font" href="#about">Your Results</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link menu-font" href="index.html">Apply Again</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger menu-font" href="#services">The FAsT team</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  </div>
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <div class="result"><h1>{{result}}</h1></div>      
+    </div>
+    <br>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+          <!-- The above was originlly 8 columns -->
+          <h2>So...What Happened?</h2>
+        </br>          
+      </div>
+
+      <div id= "chart-container" class="container-fluid">
+          <div class="row chart-row">
+          <div id="bar1-div" class="justify-center chart-div col my-5 pl-5">
+              <!-- Add 2 buttons -->
+              <button button type="submit" class="btn btn-primary btn-sm" style="font-size: 1.2vw;" onclick="updatebar(df_purpose)">Loan Purpose</button>
+              <button button type="submit" class="btn btn-primary btn-sm" style="font-size: 1.2vw;" onclick="updatebar(df_firstloan)">First Loan</button>
+              <!-- bar1 here -->
+          </div>
+          <div id="scatter1-div" class="justify-center chart-div col pt-4 my-5 pr-5">
+              <!-- scatter1 here -->
+          </div>
+          </div>
+      </div>  
+  </section>
+
+  <section id="services" class="bg-light">
+    <div class="container col-lg-8 mx-auto">
+      <div class="row">
+        <div class="col-lg-6 text-center">
+          <h2>The FAsT team:</h2>
+          <ul class="list-unstyled">
+            <li><a href="https://github.com/DeMauro">Frankie "Boom Boom" DeMauro</a></li>
+            <li><a href="https://github.com/Twilson34">TJ "<u>T</u>he <u>J</u>udge" Wilson</a></li>
+            <li><a href="https://github.com/atecza">Adrienne "Rainbow" Tecza</a></li>
+          </ul>          
+        </div>
+        <div class="col-lg-6 text-center">          
+          <h4>
+            <img
+              src="https://www.sferalabs.cc/wp-content/uploads/github-logo-white.png"
+              alt="gh logo"
+              width="100"
+            />
+            <br>
+            <a href="https://github.com/DeMauro/Project-3">
+              See the code on Github</a
+            >
+          </h4>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+    <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Fast Publishing 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../static/css/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="../static/css/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="../static/js/scrolling-nav.js"></script>
+  <script src="../static/js/app.js"></script>
+
+</body>
+
+</html>
