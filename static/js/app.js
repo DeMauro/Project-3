@@ -364,6 +364,17 @@ function renderCircles(circlesGroup, xLinearScale, yLinearScale, chosenXAxis, ch
   
 }//end function renderCircles
 
+function renderuserCircle(usercircleGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis) {
+  
+    usercircleGroup.transition()
+        .duration(1000)
+        .attr("cx", d => xLinearScale(d[chosenXAxis]))
+        .attr("cy", d => yLinearScale(d[chosenYAxis]))
+      
+    return usercircleGroup;
+  
+}
+
 function renderCircleLabels(circlesLable, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis){
     circlesLable.transition()
         .duration(1000)
@@ -401,7 +412,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 var chosenYAxis = "credit_limit";
 var chosenXAxis = "checking";
 
-function updatescatter(data, user_id){
+function updatescatter(data, user_data){
 
     var chartGroup = scatter_svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -431,6 +442,20 @@ function updatescatter(data, user_id){
         .call(leftAxis);
     
     // append initial circles
+    var usercircleGroup = chartGroup.selectAll("circle")
+    .data(user_data)
+    .enter()
+    .append("circle")
+    .attr("cx", d => xLinearScale(d[chosenXAxis]))
+    .attr("cy", d => yLinearScale(d[chosenYAxis]))
+    .attr("r", 8)
+    .attr("fill", function(d) { 
+        if(d.granted === 1){return "yellow"}
+        else {return "blue"}
+    })
+    .attr("stroke", "black");
+    
+
     var circlesGroup = chartGroup.selectAll("circle")
         .data(data)
         .enter()
@@ -439,12 +464,12 @@ function updatescatter(data, user_id){
         .attr("cy", d => yLinearScale(d[chosenYAxis]))
         .attr("r", 8)
         .attr("fill", function(d) { 
-            if(d.granted === 1){return "#008080"}
+            if(d.granted === 1){return "#006666"}
             else {return "#800000"}
         })
         .attr("stroke", "black")
         .attr("opacity", ".5")
-
+        
     // Create group for three x-axis labels
     var xlabelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
@@ -511,7 +536,7 @@ function updatescatter(data, user_id){
 
             // updates circles with new x values
             circlesGroup = renderCircles(circlesGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
-
+            usercircleGroup = renderuserCircle(usercircleGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
             //circlesLable = renderCircleLabels(circlesLable, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
 
             // updates tooltips with new info
@@ -583,7 +608,7 @@ function getData(){
         getUserdata().then(my_userdata => {
             
             updatebar(df_purpose, my_userdata)
-            updatescatter(df_scatter)
+            updatescatter(df_scatter, my_userdata)
             
 
 
