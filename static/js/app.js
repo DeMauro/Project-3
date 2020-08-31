@@ -17,9 +17,9 @@ function userid_cookie(){
 
 function barcolor(variable){
     if (variable === 'Accepted'){
-        return "#800000"
-    } else{
         return "#006666"
+    } else{
+        return "#800000"
     }
 
 }
@@ -64,12 +64,12 @@ function updatebar(data, user_data){
     //remove the previous contents of the svg each time this is run
     bar_svg.selectAll("*").remove();
 
-    console.log('user data', user_data)
+    // console.log('user data', user_data)
 
     //look at data coming in
-    console.log('bardata', data)
-    console.log('height',height)
-    console.log('Categories',data[0].Category)
+    // console.log('bardata', data)
+    // console.log('height',height)
+    // console.log('Categories',data[0].Category)
 
     var barGroup = bar_svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -121,7 +121,7 @@ function updatebar(data, user_data){
     ylabel.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 20)
-        .attr("x", -120)
+        .attr("x", -20)
         .text("Frequency");
 
     var xlabel = barGroup.append("g")
@@ -129,7 +129,7 @@ function updatebar(data, user_data){
 
     xlabel.append("text")
         .attr("y", 40)
-        .attr("x", 0)
+        .attr("x", -70)
         .text("Category");
 
 
@@ -209,6 +209,7 @@ function updatesimplebar(data){
         .domain([0, d3.max(data, d => d.value)])
         .range([height, 0]);
 
+    
     // Create two new functions passing our scales in as arguments
     // These will be used to create the chart's axes
     var bottomAxis = d3.axisBottom(xBandScale);
@@ -375,7 +376,7 @@ function updatescatter(data, user_id){
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
     var checkingLabel = xlabelsGroup.append("text")
-        .attr("x", 0)
+        .attr("x", -60)
         .attr("y", 20)
         .attr("value", "checking") // value to grab for event listener
         .classed("active", true)
@@ -383,7 +384,7 @@ function updatescatter(data, user_id){
         .text("Checking ($)");
     
     var savingsLabel = xlabelsGroup.append("text")
-        .attr("x", 0)
+        .attr("x", -60)
         .attr("y", 40)
         .attr("value", "savings") // value to grab for event listener
         .classed("active", false)
@@ -391,7 +392,7 @@ function updatescatter(data, user_id){
         .text("Savings ($)");
     
     var usedLabel = xlabelsGroup.append("text")
-        .attr("x", 0)
+        .attr("x", -60)
         .attr("y", 60)
         .attr("value", "limit_used") // value to grab for event listener
         .classed("active", false)
@@ -406,7 +407,7 @@ function updatescatter(data, user_id){
     var limitLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 30)
-        .attr("x", 0)
+        .attr("x", -70)
         .attr("value", "credit_limit") // value to grab for event listener
         .classed("active", true)
         .classed("inactive", false)
@@ -509,6 +510,7 @@ function getData(){
             
             updatebar(df_purpose, my_userdata)
             updatescatter(df_scatter)
+            updatesimplebar(df_salary)
 
 
         })
