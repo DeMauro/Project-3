@@ -23,7 +23,13 @@ function barcolor(variable){
     }
 
 }
-
+function barcolor2(variable){
+    if (variable === 1){
+        return "#006666"
+    } else{
+        return "#800000"
+    }
+}
 // BUILDING THE BAR 
 
 //set initial parameters (This will be size of entire svg)
@@ -216,23 +222,91 @@ function updatesimplebar(data){
     var leftAxis = d3.axisLeft(yLinearScale);
 
     barGroup.append("g")
-        .call(leftAxis);
+        .call(leftAxis)
+        .attr("class", "yaxis")
+        .style('opacity','0');
 
+    var ticklables = ["Accepted", "Declined"]
+    
     barGroup.append("g")
         .attr("transform", `translate(0, ${height})`)
-        .call(bottomAxis);
+        .call(bottomAxis)
+        
+
 
     barGroup.selectAll(".bar")
         .data(data)
         .enter()
         .append("rect")
+        .transition()
+        .delay(function (d) {return Math.random()*1000;})
+        .duration(1000)
         .attr("class", "bar")
+        .style("fill", function(d) { if(d.group ===1){
+            return "#006666"
+        } else{
+        return "#800000"}
+        })
         .attr("x", d => xBandScale(d.group))
         .attr("y", d => yLinearScale(d.value))
         .attr("width", xBandScale.bandwidth())
-        .attr("height", d => height - yLinearScale(d.value));
+        .attr("height", d => height - yLinearScale(d.value))
+        .style("fill", function(d) { if(d.group ===1){
+            return "#006666"
+        } else{
+        return "#800000" 
+            }; });
 
+    barGroup.select('.yaxis').transition().duration(200).delay(900).style('opacity','1');
+
+    var legend = barGroup.selectAll(".legend")
+        .data(data)
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
+        .style("opacity","0");
+
+    legend.append("rect")
+        .attr("x", width - 18)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", function(d) { if(d.group ===1){
+            return "#006666"
+        } else{
+        return "#800000" 
+            }; });
+
+    legend.append("text")
+        .attr("x", width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function(d) { if(d.group ===1){
+            return "Accepted"
+        } else{
+        return "Declined" 
+            }; });
+
+    legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+
+    var ylabel = barGroup.append("g")
+            .attr("transform", `translate(-80,${height/2})`);
+    
+    ylabel.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 20)
+        .attr("x", -20)
+        .text("Frequency");
+
+    var xlabel = barGroup.append("g")
+        .attr("transform", `translate(${width/2},${height})`);
+
+    xlabel.append("text")
+        .attr("y", 40)
+        .attr("x", -70)
+        .text("Category");
 }
+
 
 /// functions for updatescatter
 
@@ -510,7 +584,7 @@ function getData(){
             
             updatebar(df_purpose, my_userdata)
             updatescatter(df_scatter)
-            updatesimplebar(df_salary)
+            
 
 
         })
