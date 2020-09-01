@@ -10,6 +10,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import psycopg2
+import os
 
 #################################################
 # Database Setup
@@ -18,10 +19,11 @@ import psycopg2
 #make sure you have your own config on your computer in the SQL folder
 # from config import key
 
-pg_user = 'postgres'
-pg_pwd = 'iheartdata'
+pg_user = os.getenv("DB_USER")
+pg_pwd = os.getenv("DB_PASSWORD")
 pg_port = "5432"
-rds = 'p3.cbbgji2378b1.us-east-2.rds.amazonaws.com'
+rds = os.getenv("DB_ADDRESS")
+print(rds)
 
 database = 'fastloan'
 url = f"postgresql://{pg_user}:{pg_pwd}@{rds}:{pg_port}/{database}"
