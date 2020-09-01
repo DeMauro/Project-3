@@ -518,6 +518,37 @@ function updatescatter(data, user_data){
 
     // updateToolTip 
     var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
+    
+    var legend = chartGroup.selectAll(".legend")
+        .data([data[1],data[0]])
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
+        .style("opacity","0");
+
+    legend.append("rect")
+        .attr("x", width - 18)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", function(d) { if(d.granted ===1){
+            return "#006666"
+        } else{
+        return "#800000" 
+            }; });
+
+    legend.append("text")
+        .attr("x", width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function(d) { if(d.granted ===1){
+            return "Accepted"
+        } else{
+        return "Declined" 
+            }; });
+
+    legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+
 
     // axis labels event listener
     xlabelsGroup.selectAll("text").on("click", function() {

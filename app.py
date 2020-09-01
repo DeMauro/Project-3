@@ -23,7 +23,6 @@ pg_user = os.getenv("DB_USER")
 pg_pwd = os.getenv("DB_PASSWORD")
 pg_port = "5432"
 rds = os.getenv("DB_ADDRESS")
-print(rds)
 
 database = 'fastloan'
 url = f"postgresql://{pg_user}:{pg_pwd}@{rds}:{pg_port}/{database}"
