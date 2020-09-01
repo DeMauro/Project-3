@@ -3,9 +3,9 @@ function userid_cookie(){
    var cookiearray = document.cookie.split(";")
 
    for(var i = 0; i < cookiearray.length; i++){
-       console.log(cookiearray[i])
+    //    console.log(cookiearray[i])
         var [name, value] = cookiearray[i].split('=')
-        console.log(name,value)
+        // console.log(name,value)
         if (name.trim() === "user_id"){
             return value.trim()
         }
@@ -453,7 +453,7 @@ function updatescatter(data, user_data){
         .attr("fill", function(d) { 
             console.log('test', d.granted)
             if(d.granted === 1){return "yellow"}
-            else {return "black"}
+            else {return "blue"}
         })
         .attr("stroke", "black")
         .attr("opacity", ".5")
@@ -520,7 +520,7 @@ function updatescatter(data, user_data){
     var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
     
     var legend = chartGroup.selectAll(".legend")
-        .data([data[1],data[0]])
+        .data(["Accepted","Declined"])
         .enter().append("g")
         .attr("class", "legend")
         .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
@@ -530,7 +530,7 @@ function updatescatter(data, user_data){
         .attr("x", width - 18)
         .attr("width", 18)
         .attr("height", 18)
-        .style("fill", function(d) { if(d.granted ===1){
+        .style("fill", function(d) { if(d === "Accepted"){
             return "#006666"
         } else{
         return "#800000" 
@@ -541,11 +541,7 @@ function updatescatter(data, user_data){
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
-        .text(function(d) { if(d.granted ===1){
-            return "Accepted"
-        } else{
-        return "Declined" 
-            }; });
+        .text(function(d) {return d})
 
     legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
 
