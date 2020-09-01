@@ -364,14 +364,14 @@ function renderCircles(circlesGroup, xLinearScale, yLinearScale, chosenXAxis, ch
   
 }//end function renderCircles
 
-function renderuserCircle(usercircleGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis) {
+function user_renderCircles(user_circlesGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis) {
   
-    usercircleGroup.transition()
+    user_circlesGroup.transition()
         .duration(1000)
-        .attr("cx", d => xLinearScale(d[chosenXAxis]))
-        .attr("cy", d => yLinearScale(d[chosenYAxis]))
+        .attr("cx", function(d){ return xLinearScale(d[chosenXAxis])})
+        .attr("cy", function(d) {return yLinearScale(d[chosenYAxis])})
       
-    return usercircleGroup;
+    return user_circlesGroup;
   
 }
 
@@ -442,18 +442,21 @@ function updatescatter(data, user_data){
         .call(leftAxis);
     
     // append initial circles
-    var usercircleGroup = chartGroup.selectAll("circle")
-    .data(user_data)
-    .enter()
-    .append("circle")
-    .attr("cx", d => xLinearScale(d[chosenXAxis]))
-    .attr("cy", d => yLinearScale(d[chosenYAxis]))
-    .attr("r", 8)
-    .attr("fill", function(d) { 
-        if(d.granted === 1){return "yellow"}
-        else {return "blue"}
-    })
-    .attr("stroke", "black");
+    var user_circlesGroup = chartGroup.selectAll("circle")
+        .exit()
+        .data([user_data])
+        .enter()
+        .append("circle")
+        .attr("cx", function(d) { return xLinearScale(d[chosenXAxis])})
+        .attr("cy", function(d) { return yLinearScale(d[chosenYAxis])})
+        .attr("r", 15)
+        .attr("fill", function(d) { 
+            console.log('test', d.granted)
+            if(d.granted === 1){return "yellow"}
+            else {return "black"}
+        })
+        .attr("stroke", "black")
+        .attr("opacity", ".5")
     
 
     var circlesGroup = chartGroup.selectAll("circle")
@@ -536,7 +539,8 @@ function updatescatter(data, user_data){
 
             // updates circles with new x values
             circlesGroup = renderCircles(circlesGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
-            usercircleGroup = renderuserCircle(usercircleGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
+            
+            user_circlesGroup = user_renderCircles(user_circlesGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
             //circlesLable = renderCircleLabels(circlesLable, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
 
             // updates tooltips with new info
